@@ -1,2 +1,2 @@
-// templatescript.js
+// lightdarkmode.js
 
