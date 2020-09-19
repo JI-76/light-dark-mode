@@ -54,12 +54,29 @@ function switchTheme(event) {
     //console.log(event.target.checked);
     if (event.target.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
+        // persist mode choice to Window.localStorage
+        localStorage.setItem('theme', 'dark');
         darkMode();
     } else {
         document.documentElement.setAttribute('data-theme', 'light');
+        // persist mode choice to Window.localStorage
+        localStorage.setItem('theme', 'light');
         lightMode();
     }
 }
 
 // Event Listener when a chekckbox is changed
 toggleSwitch.addEventListener('change', switchTheme);
+
+// Check Local Storage for Theme
+const currentTheme = localStorage.getItem('theme');
+//console.log(currentTheme);
+// check for item's existence before retrieving from Local Storage
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+        darkMode();
+    }
+}
